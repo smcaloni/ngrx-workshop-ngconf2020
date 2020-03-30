@@ -29,16 +29,7 @@ export class BooksPageComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(BooksPageActions.enterBook());
-    this.getBooks();
     this.removeSelectedBook();
-  }
-
-  getBooks() {
-    this.booksService.all().subscribe(books => {
-      // action to describe the event of this API call succeding
-      // for production, would have an action for API failing
-      this.store.dispatch(BooksApiActions.booksLoaded({ books }));
-    });
   }
 
   onSelect(book: BookModel) {
@@ -65,8 +56,7 @@ export class BooksPageComponent implements OnInit {
   saveBook(bookProps: BookRequiredProps) {
     this.store.dispatch(BooksPageActions.createBook({book: bookProps}));
     this.booksService.create(bookProps).subscribe(book => {
-      // this.getBooks();
-      // this.removeSelectedBook();
+      this.removeSelectedBook();
 
       this.store.dispatch(BooksApiActions.bookCreated({book}));
     });
@@ -75,8 +65,7 @@ export class BooksPageComponent implements OnInit {
   updateBook(book: BookModel) {
     this.store.dispatch(BooksPageActions.updateBook({bookId: book.id, bookChanges:book }));
     this.booksService.update(book.id, book).subscribe(book => {
-      // this.getBooks();
-      // this.removeSelectedBook();
+      this.removeSelectedBook();
 
       this.store.dispatch(BooksApiActions.bookUpdated({ book }));
     });
@@ -85,8 +74,7 @@ export class BooksPageComponent implements OnInit {
   onDelete(book: BookModel) {
     this.store.dispatch(BooksPageActions.deleteBook({bookId: book.id}));
     this.booksService.delete(book.id).subscribe(() => {
-      // this.getBooks();
-      // this.removeSelectedBook();
+      this.removeSelectedBook();
 
       this.store.dispatch(BooksApiActions.bookDeleted({ bookId: book.id }));
     });
