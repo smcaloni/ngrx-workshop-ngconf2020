@@ -6,6 +6,6 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  title = "NgRx Workshop";
+  title = "NgRx Workshop Steve";
   links = [{ path: "/books", icon: "book", label: "Books" }];
 }
