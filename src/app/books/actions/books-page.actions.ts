@@ -21,7 +21,7 @@ export const clearSelectedBook = createAction(
 // createAction
 export const createBook = createAction(
     "[Books Page] Create",
-    props<{ book: BookRequiredProps }>()
+    (book: BookRequiredProps) => ({ book })
 );
 
 // updateAction
