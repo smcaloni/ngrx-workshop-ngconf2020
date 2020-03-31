@@ -36,3 +36,7 @@ export interface State {
   export function reducer(state: State | undefined, action: Action) {
     return authReducer(state, action);
   }
+
+export const selectGettingStatus = (state: State) => state.gettingStatus;
+export const selectUser = (state: State) => state.user;
+export const selectError = (state: State) => state.error;
